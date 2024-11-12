@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>AeroGreen Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sustainable Aviation Fuel (SAF) Parameters</h1>
+        <nav>
+            <a href="index.html" target="_blank" class="nav-link">References</a>
+        </nav>
+    </header>
+    <div class="container">
+        <form id="safForm">
+            <h3>Input Fuel Parameters</h3>
+            <!-- Input fields for each parameter -->
+            <label for="energy_density">Energy Density (MJ/kg): <span>(Range: 0 - 35)</span></label>
+            <input type="number" id="energy_density" step="0.1" required>
+
+            <label for="cetane_number">Cetane Number: <span>(Range: 40 - 60)</span></label>
+            <input type="number" id="cetane_number" step="0.1" required>
+
+            <label for="octane_number">Octane Number: <span>(Range: 85 - 100)</span></label>
+            <input type="number" id="octane_number" step="0.1" required>
+
+            <label for="flash_point">Flash Point (°C): <span>(Range: 40 - 60)</span></label>
+            <input type="number" id="flash_point" step="0.1" required>
+
+            <label for="viscosity">Viscosity (cSt): <span>(Range: 1 - 5)</span></label>
+            <input type="number" id="viscosity" step="0.1" required>
+
+            <label for="sulfur_content">Sulfur Content (ppm): <span>(Range: 0 - 10)</span></label>
+            <input type="number" id="sulfur_content" step="0.1" required>
+
+            <label for="thermal_efficiency">Thermal Efficiency (%): <span>(Range: 25 - 35)</span></label>
+            <input type="number" id="thermal_efficiency" step="0.1" required>
+
+            <label for="carbon_intensity">Carbon Intensity (gCO₂/MJ): <span>(Range: 20 - 50)</span></label>
+            <input type="number" id="carbon_intensity" step="0.1" required>
+
+            <label for="feedstock_sourcing">Feedstock Sourcing and Availability: <span>(Score 0-10)</span></label>
+            <input type="number" id="feedstock_sourcing" step="0.1" required>
+
+            <label for="water_usage">Water Usage (L/MJ): <span>(Range: 0 - 5)</span></label>
+            <input type="number" id="water_usage" step="0.1" required>
+
+            <label for="blending_ratio">Blending Ratio (%): <span>(Range: 0 - 50)</span></label>
+            <input type="number" id="blending_ratio" step="0.1" required>
+
+            <label for="carbon_footprint">Carbon Footprint (gCO₂e): <span>(Range: 0 - 80)</span></label>
+            <input type="number" id="carbon_footprint" step="0.1" required>
+
+            <label for="EROI">EROI (Dimensionless): <span>(Range: 0 - 10)</span></label>
+            <input type="number" id="EROI" step="0.1" required>
+
+            <label for="co2_emissions">CO₂ Emissions (g/kg fuel): <span>(Range: 0 - 100)</span></label>
+            <input type="number" id="co2_emissions" step="0.1" required>
+
+            <label for="nox_emissions">NOx Emissions (g/kg fuel): <span>(Range: 0 - 100)</span></label>
+            <input type="number" id="nox_emissions" step="0.1" required>
+
+            <label for="pm_emissions">PM Emissions (g/kg fuel): <span>(Range: 0 - 100)</span></label>
+            <input type="number" id="pm_emissions" step="0.1" required>
+
+            <label for="co_emissions">CO Emissions (g/kg fuel): <span>(Range: 0 - 100)</span></label>
+            <input type="number" id="co_emissions" step="0.1" required>
+
+            <label for="ch4_emissions">CH₄ Emissions (g/kg fuel): <span>(Range: 0 - 100)</span></label>
+            <input type="number" id="ch4_emissions" step="0.1" required>
+
+           
+
+            <button type="button" onclick="calculateScore()">Calculate Sustainability Score</button>
+        </form>
+
+        <div id="scoreDisplay" style="display: none;">
+            <h3>Your Sustainability Score: <span id="sustainabilityScore"></span> / 10</h3>
+        </div>
+
+        <div id="results" style="display:none;">
+            <h4>Parameter Weightage and Comparison</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>User Input</th>
+                        <th>Standard</th>
+                        <th>Weightage</th>
+                    </tr>
+                </thead>
+                <tbody id="comparisonTable">
+                    <!-- Comparison rows will be inserted here -->
+                </tbody>
+            </table>
+            <h3>Sustainability Score Breakdown</h3>
+            <div id="chart-container" style="width: 100%; height: 600px; display: flex; justify-content: center; align-items: center;">
+                <canvas id="normalizedScoreChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
